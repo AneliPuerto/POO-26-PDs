@@ -40,8 +40,8 @@ int main(void) {
         printf("No encontrado\n");
     }
 
-    printf("\n[Prueba] Actualizar stand #103 (cambio de estado a Vendido):\n");
-    if (actualizarStand(lista, 103, 3.0f, 5.0f, VENDIDO)) {
+    printf("\n[Prueba] Actualizar stand #103 (cambio de área y estado a Vendido):\n");
+    if (actualizarStand(&lista, 103, 1.0f, 1.0f, VENDIDO)) {
         printf("Actualización exitosa\n");
     } else {
         printf("No se pudo actualizar\n");

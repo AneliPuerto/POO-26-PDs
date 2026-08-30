@@ -73,16 +73,42 @@ Stand *buscarStand(Stand *cabeza, int numero) {
     return NULL;
 }
 
-int actualizarStand(Stand *cabeza, int numero, float ancho, float largo, StandEstado estado) {
-    Stand *encontrado = buscarStand(cabeza, numero);
+int actualizarStand(Stand **cabeza, int numero, float ancho, float largo, StandEstado estado) {
+    Stand *actual;
+    Stand *anterior = NULL;
+    int cambioDimensiones;
 
-    if (encontrado == NULL) {
+    if (cabeza == NULL || *cabeza == NULL) {
         return 0;
     }
 
-    encontrado->ancho = ancho;
-    encontrado->largo = largo;
-    encontrado->estado = estado;
+    actual = *cabeza;
+
+    while (actual != NULL && actual->numero != numero) {
+        anterior = actual;
+        actual = actual->siguiente;
+    }
+
+    if (actual == NULL) {
+        return 0;
+    }
+
+    cambioDimensiones = (actual->ancho != ancho) || (actual->largo != largo);
+
+    actual->ancho = ancho;
+    actual->largo = largo;
+    actual->estado = estado;
+
+    if (cambioDimensiones) {
+        if (anterior == NULL) {
+            *cabeza = actual->siguiente;
+        } else {
+            anterior->siguiente = actual->siguiente;
+        }
+
+        actual->siguiente = NULL;
+        insertarOrdenadoPorArea(cabeza, actual);
+    }
 
     return 1;
 }
