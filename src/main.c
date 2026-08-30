@@ -32,7 +32,7 @@ int main(void) {
     printf("\n[Prueba] Buscar stand #102:\n");
     resultado = buscarStand(lista, 102);
     if (resultado != NULL) {
-        printf("Encontrado -> Stand #%d, Área: %.2fm2, Estado: %s\n",
+        printf("Encontrado -> Stand #%d, Área: %.2fm^2, Estado: %s\n",
                resultado->numero,
                calcularArea(resultado),
                estadoAString(resultado->estado));

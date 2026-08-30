@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "stand.h"
 
@@ -43,7 +44,7 @@ void insertarOrdenadoPorArea(Stand **cabeza, Stand *nuevo) {
         return;
     }
 
-    if (*cabeza == NULL || calcularArea(nuevo) <= calcularArea(*cabeza)) {
+    if (*cabeza == NULL || calcularArea(nuevo) < calcularArea(*cabeza)) {
         nuevo->siguiente = *cabeza;
         *cabeza = nuevo;
         return;
@@ -76,7 +77,9 @@ Stand *buscarStand(Stand *cabeza, int numero) {
 int actualizarStand(Stand **cabeza, int numero, float ancho, float largo, StandEstado estado) {
     Stand *actual;
     Stand *anterior = NULL;
-    int cambioDimensiones;
+    float areaAnterior;
+    float areaNueva;
+    int requiereReordenar;
 
     if (cabeza == NULL || *cabeza == NULL) {
         return 0;
@@ -93,13 +96,15 @@ int actualizarStand(Stand **cabeza, int numero, float ancho, float largo, StandE
         return 0;
     }
 
-    cambioDimensiones = (actual->ancho != ancho) || (actual->largo != largo);
+    areaAnterior = calcularArea(actual);
+    areaNueva = ancho * largo;
+    requiereReordenar = fabsf(areaAnterior - areaNueva) > 0.0001f;
 
     actual->ancho = ancho;
     actual->largo = largo;
     actual->estado = estado;
 
-    if (cambioDimensiones) {
+    if (requiereReordenar) {
         if (anterior == NULL) {
             *cabeza = actual->siguiente;
         } else {
@@ -151,7 +156,7 @@ void imprimirLista(const Stand *cabeza) {
     }
 
     while (actual != NULL) {
-        printf("Stand #%d | %.2fm x %.2fm | Área: %.2fm2 | Estado: %s\n",
+        printf("Stand #%d | %.2fm x %.2fm | Área: %.2fm^2 | Estado: %s\n",
                actual->numero,
                actual->ancho,
                actual->largo,
