@@ -2,7 +2,7 @@
 
 Esta guía te ayuda a usar el repositorio de la tarea **Stands - Listas Simplemente Ligadas**.
 
-## Prerequisitos
+## Prerrequisitos
 
 - Tener Git instalado en tu computadora ([descargar aquí](https://git-scm.com/))
 - Una cuenta en GitHub

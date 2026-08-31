@@ -24,4 +24,3 @@ jobs:
 
       - name: Verificar memory leaks (valgrind)
         run: valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 ./stands_app
-        continue-on-error: true

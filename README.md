@@ -105,9 +105,8 @@ Graba un video (3-8 minutos) donde demuestres:
 | Ejecución de pruebas en vivo | ☐ |
 | Audio claro y diapositivas legibles | ☐ |
 
-**Enlace del video:** Reemplaza esto con tu URL
 ```
-URL: https://...
+Enlace del video: https://...
 ```
 
 ## Retroalimentación automática con GitHub Actions
