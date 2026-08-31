@@ -51,9 +51,15 @@ Se debe construir una lista simplemente ligada ordenada para administrar los sta
 ### Código base incluido en este repositorio
 
 - `src/stand.h`: estructura `Stand`, enum de estado y prototipos de funciones.
-- `src/stand.c`: implementación base de operaciones de lista simplemente ligada.
 - `src/main.c`: bloque de pruebas para insertar, buscar, actualizar, borrar e imprimir.
 - `Makefile`: compilación y ejecución rápida.
+- `GUIA.md`: primer contacto con Git y GitHub.
+
+- `src/stand.c`: implementación de las funciones declaradas en `stand.h`.
+
+## Antes de empezar
+
+**Lee primero la [`GUIA.md`](GUIA.md)** si es tu primer contacto con Git o GitHub.
 
 ## Compilación y ejecución
 
@@ -64,23 +70,85 @@ make run
 
 ## Entregables para estudiantes
 
-Cada estudiante debe trabajar en su repositorio personal (clon o fork, según acuerdo con el docente) y entregar:
+Cada estudiante debe trabajar en su repositorio personal (clon o fork, según acuerdo con el docente) e implementar `src/stand.c` con las operaciones solicitadas.
 
-1. Código fuente funcional con las operaciones solicitadas.
-2. Documentación mínima en Markdown (por ejemplo, descripción del diseño y decisiones).
-3. Sección **Video** en el README con la URL del video donde:
-   - Explica el código construido.
-   - Muestra la ejecución final del bloque de pruebas.
+### 1. Código funcional
 
-### Plantilla sugerida para sección Video
+Tu implementación debe:
 
-```md
-## Video
-- URL: https://...
+- Compilar sin errores ni warnings
+- Pasar todas las pruebas en `main.c` sin segmentation faults
+- Cumplir con todos los requisitos de memoria dinámica
+- Mantener la lista ordenada por área tras cada inserción y actualización
+
+### 2. Documentación
+
+Actualiza el README de tu repositorio con:
+
+- Breve descripción de tu diseño (2-3 párrafos)
+- Decisiones importantes (ej: cómo manejaste la reordenación)
+- Cualquier reto que hayas enfrentado y cómo lo resolviste
+
+### 3. Video de explicación técnica
+
+Graba un video (3-8 minutos) donde demuestres:
+
+**Checklist técnico para el video:**
+
+| Elemento | Cumple |
+|----------|--------|
+| Estructura de datos explicada claramente | ☐ |
+| Funciones clave documentadas (al menos 3) | ☐ |
+| Manejo de memoria dinámico explicado | ☐ |
+| Criterio de ordenamiento por área justificado | ☐ |
+| Casos límite mencionados (lista vacía, actualización no encontrada) | ☐ |
+| Ejecución de pruebas en vivo | ☐ |
+| Audio claro y diapositivas legibles | ☐ |
+
+```
+Enlace del video: https://...
 ```
 
-## Opciones de mejora sugeridas
+## Retroalimentación automática con GitHub Actions
 
-- Definir rúbrica de evaluación con porcentajes (correctitud, legibilidad, uso de memoria dinámica, explicación técnica).
-- Agregar casos límite obligatorios (lista vacía, elemento duplicado, actualización de stand inexistente).
-- Incluir una segunda versión opcional con ordenamiento por número de stand para comparar decisiones de diseño.
+Cada vez que hagas `git push`, el repositorio:
+
+1. Compila automáticamente tu código
+2. Ejecuta las pruebas
+3. Verifica memory leaks con valgrind
+4. Muestra errores de compilación en tu Pull Request
+
+Revisa la pestaña **Actions** para ver los resultados.
+
+## Opciones de mejora (avanzado)
+
+Si terminas antes de la entrega, considera:
+
+1. **Ordenamiento alternativo:** Implementa una segunda versión que ordene por número de stand en lugar de área. Compara ambas decisiones de diseño en un comentario.
+
+2. **Validación de entrada:** Agrega verificaciones para no permitir dimensiones negativas o cero.
+
+3. **Estadísticas:** Implementa funciones auxiliares como:
+   - `float areaTotal(Stand *cabeza)` — suma de áreas
+   - `int contarStandsPorEstado(Stand *cabeza, StandEstado estado)` — cuenta por estado
+   - `Stand *encontrarMasGrande(Stand *cabeza)` — stand con mayor área
+
+4. **Persistencia:** Guarda y carga la lista desde un archivo `.txt` o `.csv`.
+
+## Errores comunes a evitar
+
+- No liberar memoria reservada → memory leaks
+- Modificar punteros sin actualizar la cabeza → perder acceso a la lista
+- No verificar si `malloc()` retorna `NULL`
+- Acceder a campos de un nodo ya liberado
+- Asumir que la lista está ordenada sin verificarlo
+
+## Recursos complementarios
+
+- [Data Structures: Linked Lists in C](https://www.geeksforgeeks.org/data-structures/linked-list/)
+- [Memory Management in C](https://www.learn-c.org/en/Memory_Management)
+- [GitHub Docs: Pull Requests](https://docs.github.com/en/pull-requests)
+
+---
+
+**Creado para POO 2026 | Ingeniería en Software**
