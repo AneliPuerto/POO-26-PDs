@@ -55,7 +55,7 @@ Se debe construir una lista simplemente ligada ordenada para administrar los sta
 - `Makefile`: compilación y ejecución rápida.
 - `GUIA.md`: primer contacto con Git y GitHub.
 
-> **Nota:** `src/stand.c` **no está incluido** — es lo que los estudiantes deben implementar.
+- `src/stand.c`: implementación de las funciones declaradas en `stand.h`.
 
 ## Antes de empezar
 
