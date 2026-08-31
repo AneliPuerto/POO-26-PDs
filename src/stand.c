@@ -4,6 +4,7 @@
 #include "stand.h"
 
 float calcularArea(const Stand *stand) {
+    if (stand == NULL) return 0.0f;
     return stand->ancho * stand->largo;
 }
 
@@ -57,6 +58,7 @@ Stand *buscarStand(Stand *cabeza, int numero) {
 }
 
 int actualizarStand(Stand **cabeza, int numero, float ancho, float largo, StandEstado estado) {
+    if (cabeza == NULL) return 0;
     Stand *encontrado = buscarStand(*cabeza, numero);
     if (encontrado == NULL) {
         return 0;
