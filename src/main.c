@@ -55,7 +55,6 @@ int main(void) {
         printf("No se pudo eliminar\n");
     }
     imprimirLista(lista);
-
     liberarLista(&lista);
     return 0;
 }
